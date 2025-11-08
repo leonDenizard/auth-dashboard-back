@@ -8,7 +8,7 @@ dotenv.config();
 export default fs (async function (app: FastifyInstance) {
 
     app.register(fastifyJwt, {
-        secret: process.env.JWT_SECREAT || "strong_security_key"
+        secret: process.env.JWT_SECRET || "strong_security_key"
     })
 
     app.decorate("authenticate", async function (request, reply) {
