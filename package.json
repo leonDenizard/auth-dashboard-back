@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "@fastify/cors": "^11.1.0",
+    "@fastify/jwt": "^10.0.0",
+    "dotenv": "^17.2.3",
+    "fastify": "^5.6.1",
+    "mongoose": "^8.19.3"
+  },
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "ts-node-dev": "^2.0.0"
+  }
+}
