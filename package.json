@@ -12,6 +12,8 @@
     "start": "node dist/server.js"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.3.4",
+    "@types/mongoose": "^5.11.96",
     "@types/node": "^24.10.0",
     "ts-node-dev": "^2.0.0"
   }
