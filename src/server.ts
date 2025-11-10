@@ -1,4 +1,4 @@
-import builApp from "./app";
+import buildApp  from "./app";
 import { connectDB } from "./db/db";
 import dotenv from "dotenv";
 
@@ -7,7 +7,7 @@ dotenv.config();
 const start = async () => {
     try {
         await connectDB();
-        const app = await builApp();
+        const app = await buildApp();
 
         await app.listen({
             port: Number(process.env.PORT) || 3333,
@@ -18,7 +18,7 @@ const start = async () => {
             `Server running at port http://localhost:${process.env.PORT}/api`,
         );
     } catch (error) {
-        app.log.error(error);
+        console.log(error);
         process.exit(1);
     }
 };

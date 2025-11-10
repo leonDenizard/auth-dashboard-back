@@ -1,13 +1,16 @@
-const Fastify = require("fastify");
-const cors = require("@fastify/cors");
-const authPlugin = require("./plugins/jwt");
-const loginRoutes = require("./routes/login");
-const profileRoutes = require("./routes/profile");
+import Fastify from "fastify";
+import cors from "@fastify/cors";
+import authPlugin from "./plugins/jwt";
+import loginRoutes from "./routes/login";
+import profileRoutes from "./routes/profile";
+import { userRoutes } from "./routes/user.routes";
+import { errorHandler } from "./middlewares/errorHandler";
+
 
 const app = Fastify();
 
 // Função para registrar plugins
-async function buildApp() {
+export async function buildApp() {
 	await app.register(cors, {
 		origin: ["http://localhost:5173"], // endereço do teu front
 		methods: ["GET", "POST", "PUT", "DELETE"],
@@ -17,8 +20,10 @@ async function buildApp() {
 	app.register(authPlugin);
 	app.register(loginRoutes);
 	app.register(profileRoutes);
+	app.register(userRoutes)
+	app.setErrorHandler(errorHandler)
 
 	return app;
 }
 
-module.exports = buildApp;
+export default buildApp

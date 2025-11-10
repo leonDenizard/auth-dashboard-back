@@ -6,6 +6,7 @@ const SALT_ROUNDS = 12
 //Criando Interface
 export interface IUser extends Document {
     username: string,
+    name: string,
     email: string,
     password: string,
     createdAt: Date,
@@ -16,6 +17,7 @@ const userSchema = new Schema<IUser>(
 
     {
         username: { type: String, required: true, unique: true },
+        name: { type: String },
         email: { type: String, required: true, unique: true },
         password: { type: String, required: true },
     },
