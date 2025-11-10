@@ -1,9 +1,7 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
-import authPlugin from "./plugins/jwt";
-import loginRoutes from "./routes/login";
-import profileRoutes from "./routes/profile";
 import { userRoutes } from "./routes/user.routes";
+import { authRoutes }  from "./routes/auth.routes";
 import { errorHandler } from "./middlewares/errorHandler";
 
 
@@ -17,10 +15,9 @@ export async function buildApp() {
 		credentials: true,
 	});
 
-	app.register(authPlugin);
-	app.register(loginRoutes);
-	app.register(profileRoutes);
+	
 	app.register(userRoutes)
+	app.register(authRoutes)
 	app.setErrorHandler(errorHandler)
 
 	return app;
