@@ -33,4 +33,9 @@ export class AuthService {
       user: { id: user.id, username: user.username, email: user.email },
     };
   }
+
+  async getUserById(id: string) {
+    return User.findById(id).select("-password");
+  }
+
 }

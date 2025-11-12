@@ -10,7 +10,7 @@ const app = Fastify();
 // Função para registrar plugins
 export async function buildApp() {
 	await app.register(cors, {
-		origin: ["http://localhost:5173"], // endereço do teu front
+		origin: ["http://localhost:5173"],
 		methods: ["GET", "POST", "PUT", "DELETE"],
 		credentials: true,
 	});

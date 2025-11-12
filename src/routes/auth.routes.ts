@@ -2,6 +2,7 @@
 import { FastifyInstance } from "fastify";
 import { AuthService } from "../services/auth.service"
 import { sendResponse } from "../utils/sendResponse";
+import { authenticate } from "../middlewares/authenticate";
 
 export async function authRoutes(app: FastifyInstance) {
     const authService = new AuthService();
@@ -16,4 +17,13 @@ export async function authRoutes(app: FastifyInstance) {
         return sendResponse(reply, 200, "Usuário autenticado", result)
 
     });
+
+    app.get("/api/auth/profile", {preHandler: [authenticate]}, async (request, reply) => {
+
+        const {id} = (request as any).user
+        const user = await authService.getUserById(id)
+
+        if(!user) return sendResponse(reply, 404, "Usuário não encontrado");
+        return sendResponse(reply, 200, "Perfil carregado com sucesso", {user})
+    })
 }
