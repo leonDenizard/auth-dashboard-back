@@ -38,4 +38,34 @@ export class AuthService {
     return User.findById(id).select("-password");
   }
 
+  async getUserByEmail(email: string) {
+    return User.findOne({email}).select("-password")
+  }
+  async getUserByUsername(username: string) {
+    return User.findOne({username}).select("-password")
+  }
+
+  async changePassword(email: string, username: string, newPassword: string) {
+    const user = await User.findOne({email, username})
+
+    if(!user){
+
+      const error = new Error("Usuário não encontrado");
+      (error as any).statusCode = 401;
+      throw error;
+    }
+
+    user.password = newPassword
+    await user.save()
+
+    return{
+      user: {
+        id: user.id,
+        name: user.name,
+        username: user.username,
+        email: user.email
+      }
+    }
+  }
+
 }

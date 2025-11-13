@@ -10,7 +10,8 @@ export interface IUser extends Document {
     email: string,
     password: string,
     createdAt: Date,
-    updatedAt: Date
+    updatedAt: Date,
+    passwordChangedAt: Date,
 }
 //Schema mongoose define o formato no BD
 const userSchema = new Schema<IUser>(
@@ -19,7 +20,8 @@ const userSchema = new Schema<IUser>(
         username: { type: String, required: true, unique: true },
         name: { type: String },
         email: { type: String, required: true, unique: true },
-        password: { type: String, required: true },
+        password: { type: String, required: true, changeAt: Date },
+        passwordChangedAt: {type: Date}
     },
     {
         timestamps: true,
@@ -35,6 +37,8 @@ userSchema.pre("save", async function (next){
         const hash = await bcrypt.hash(doc.password, SALT_ROUNDS)
         doc.password = hash
 
+        doc.passwordChangedAt = new Date()
+        
         next()
     } catch (error) {
         next(error as any)
