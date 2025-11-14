@@ -10,7 +10,7 @@ const app = Fastify();
 // Função para registrar plugins
 export async function buildApp() {
 	await app.register(cors, {
-		origin: ["http://localhost:5173", "auth-dashboard-jet.vercel.app"],
+		origin: ["http://localhost:5173", "http:s//auth-dashboard-jet.vercel.app"],
 		methods: ["GET", "POST", "PUT", "DELETE"],
 		credentials: true,
 	});
