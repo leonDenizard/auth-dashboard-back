@@ -1,3 +1,4 @@
+import { FastifyReply, FastifyRequest } from "fastify";
 import { User } from "../models/user.model";
 import { verifyToken } from "../utils/jwt";
 import { sendResponse } from "../utils/sendResponse";
