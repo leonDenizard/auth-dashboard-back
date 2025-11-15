@@ -9,15 +9,15 @@ export class AuthService {
 
     if (!user) {
       const error = new Error("Usuário não encontrado");
-      (error as any).statusCode = 401;
+      (error as any).statusCode = 400;
       throw error;
     }
 
     const isValid = await bcrypt.compare(password, user.password);
 
     if (!isValid) {
-      const error = new Error("Credenciais inválidas");
-      (error as any).statusCode = 401;
+      const error = new Error("Usuário ou senha incorreta");
+      (error as any).statusCode = 400;
       throw error;
     }
 
@@ -51,7 +51,7 @@ export class AuthService {
     if(!user){
 
       const error = new Error("Usuário não encontrado");
-      (error as any).statusCode = 401;
+      (error as any).statusCode = 400;
       throw error;
     }
 
