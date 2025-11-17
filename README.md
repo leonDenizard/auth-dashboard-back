@@ -25,6 +25,7 @@ Gerar um token de autorização (JWT) quando o usuário autenticar com usuário 
 - Geração de tokens JWT
 - Validação de tokens
 - Rotas protegidas
+- Logou ao mudar senha
 
 ## Pré-requisitos
 
@@ -54,7 +55,7 @@ Crie um arquivo `.env` na raiz do projeto:
 # Servidor
 PORT=3000
 
-# MongoDB (opcional)
+# MongoDB
 MONGO_URI=mongodb+srv://root:senha@cluster
 
 # Rota
